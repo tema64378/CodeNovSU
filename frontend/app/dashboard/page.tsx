@@ -13,29 +13,35 @@ export default function DashboardPage() {
         <main className="section">
           <div className="container detail-section">
             <DashboardClient />
-            <section className="detail-grid">
-              <article className="detail-card">
-                <div className="eyebrow">Следующий шаг</div>
-                <h2 style={{ marginTop: 0 }}>Что уже migrated из прототипа</h2>
+            <section className="detail-grid dashboard-support-grid">
+              <article className="detail-card dashboard-support-card">
+                <div className="eyebrow">Навигация</div>
+                <h2 style={{ marginTop: 0 }}>Что делать дальше, когда время ограничено</h2>
                 <p>
-                  Мы начали перенос auth‑сценариев: production login и dashboard теперь существуют отдельно от
-                  статических HTML-файлов и могут расширяться без копирования логики.
+                  Хороший кабинет не заставляет думать заново каждый раз. Он быстро возвращает тебя в понятный
+                  контекст: продолжить трек, открыть практику или закрыть один короткий урок.
                 </p>
-                <ul>
-                  <li>логин и регистрация работают через backend API;</li>
-                  <li>появился клиентский auth provider с local session;</li>
-                  <li>dashboard защищён и знает текущего пользователя;</li>
-                  <li>header теперь реагирует на состояние авторизации.</li>
-                </ul>
+                <div className="dashboard-shortcuts">
+                  <Link href="/tracks/cpp" className="button button--primary">
+                    Вернуться к треку
+                  </Link>
+                  <Link href="/tracks/cpp/lessons/hello-world-and-structure" className="button button--ghost">
+                    Один короткий урок
+                  </Link>
+                </div>
               </article>
 
-              <aside className="detail-card">
-                <div className="eyebrow">Продолжение</div>
-                <h2 style={{ marginTop: 0 }}>Что переносить дальше</h2>
-                <p>Следующим логичным блоком станет перенос lesson/task flow поверх уже готового API каталога.</p>
-                <Link href="/tracks/cpp" className="button button--primary">
-                  Перейти к треку
-                </Link>
+              <aside className="detail-card dashboard-support-card">
+                <div className="eyebrow">Подписка</div>
+                <h2 style={{ marginTop: 0 }}>Премиум нужен для глубины, а не для старта</h2>
+                <p>
+                  Бесплатный слой даёт вход и базовый ритм. Премиум открывает углублённые уровни, больше практики и
+                  безлимитные AI-подсказки.
+                </p>
+                <div className="detail-chip-row">
+                  <span className="chip chip--free">Free start</span>
+                  <span className="chip chip--premium">Premium depth</span>
+                </div>
               </aside>
             </section>
           </div>

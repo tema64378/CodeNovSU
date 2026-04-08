@@ -28,6 +28,7 @@ def get_track(track_slug: str, db: Session = Depends(get_db)) -> TrackDetailRead
         .options(
             selectinload(Track.levels)
             .selectinload(Level.lessons)
+            .selectinload(Lesson.tasks)
         )
     )
     track = db.execute(query).scalar_one_or_none()

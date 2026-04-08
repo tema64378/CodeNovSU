@@ -96,3 +96,29 @@ WHERE NOT EXISTS (
     WHERE lesson_id = lesson_ref.id
       AND slug = 'print-hello-cpp'
 );
+
+INSERT INTO task_test_cases (
+    task_id,
+    kind,
+    input_payload,
+    expected_output,
+    is_hidden,
+    weight
+)
+SELECT
+    task.id,
+    'stdout',
+    '',
+    'Hello, CodeNovsu!',
+    FALSE,
+    1
+FROM tasks task
+JOIN lessons lesson ON lesson.id = task.lesson_id
+WHERE lesson.slug = 'hello-world-and-structure'
+  AND task.slug = 'print-hello-cpp'
+  AND NOT EXISTS (
+      SELECT 1
+      FROM task_test_cases test_case
+      WHERE test_case.task_id = task.id
+        AND test_case.expected_output = 'Hello, CodeNovsu!'
+  );

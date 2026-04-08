@@ -4,19 +4,22 @@ export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="container site-footer__inner">
-        <div>
+        <div className="site-footer__brand">
           <strong>CodeNovsu</strong>
-          <p>Production frontend scaffold for the learning platform MVP.</p>
+          <p>Платформа, в которой обучение ощущается как маршрут: практика, карта прогресса, награды и ИИ-наставник.</p>
         </div>
-        <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+        <div className="site-footer__links">
           <Link className="muted-link" href="/tracks/cpp">
-            C++ Track
+            C++ трек
           </Link>
-          <Link className="muted-link" href="/#features">
-            Platform
+          <Link className="muted-link" href="/tracks/ai-specialist">
+            AI Specialist
           </Link>
-          <Link className="muted-link" href="/#api-ready">
-            API Ready
+          <Link className="muted-link" href="/tracks/cybersecurity">
+            Кибербезопасность
+          </Link>
+          <Link className="muted-link" href="/dashboard">
+            Кабинет
           </Link>
         </div>
       </div>

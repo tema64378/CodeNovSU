@@ -13,3 +13,4 @@ backend/api/.env
 
 frontend/.next/
 frontend/node_modules/
+frontend/.env.local

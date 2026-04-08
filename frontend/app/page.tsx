@@ -17,21 +17,21 @@ export default async function HomePage() {
       <SiteHeader />
       <main>
         <section className="hero">
-          <div className="container hero__grid">
+          <div className="hero-shell hero__grid">
             <div className="hero__content">
-              <div className="eyebrow">Production frontend scaffold</div>
-              <h1>CodeNovsu переезжает из прототипа в настоящее приложение</h1>
+              <div className="eyebrow">Учиться через маршрут, а не через хаос</div>
+              <h1>CodeNovsu помогает войти в программирование мягко, но без потери глубины</h1>
               <p>
-                Мы вынесли дизайн-референс в отдельный прототип и начали production frontend на App Router. Этот
-                каркас уже умеет забирать треки из backend API и готов к переносу уроков, задач, профтеста и
-                карты прогресса.
+                Здесь теория, практика, карта прогресса, AI-подсказки и награды работают как единый учебный путь.
+                Можно начать бесплатно, двигаться шаг за шагом и видеть, что делать дальше, без ощущения
+                перегруженности.
               </p>
               <div className="hero__actions">
                 <Link href="/tracks/cpp" className="button button--primary">
-                  Открыть C++ трек
+                  Начать с C++
                 </Link>
-                <Link href="/prototype/web" className="button button--ghost">
-                  Посмотреть прототип
+                <Link href="/dashboard" className="button button--ghost">
+                  Открыть кабинет
                 </Link>
               </div>
               <div className="hero__metrics">
@@ -63,7 +63,7 @@ export default async function HomePage() {
             <SectionHeading
               eyebrow="Платформа"
               title="Сразу строим фронтенд вокруг реальных продуктовых модулей"
-              description="Каркас рассчитан не на витрину, а на живые сценарии: каталог треков, страницы обучения, интеграцию с API, прогресс, AI hints и монетизацию."
+              description="Каждый экран должен отвечать на понятный пользовательский вопрос: где я сейчас, что мне делать дальше, насколько я продвинулся и что получу за усилие."
             />
             <div className="section-grid">
               {platformFeatures.map((feature) => (
@@ -77,8 +77,8 @@ export default async function HomePage() {
           <div className="container">
             <SectionHeading
               eyebrow="Треки"
-              title="Каталог уже читает данные из backend API"
-              description="Если backend недоступен локально, фронтенд использует fallback-данные. Это позволяет спокойно продолжать верстку и роутинг, не блокируя UI на каждой серверной правке."
+              title="Треки уже собраны как понятные маршруты роста"
+              description="В каждом треке есть уровни сложности, практика, boss-модули и карта прогресса. Даже если backend временно недоступен, UI продолжает показывать реальную структуру обучения."
             />
             <div className="track-grid">
               {tracks.map((track) => (

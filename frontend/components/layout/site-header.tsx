@@ -5,9 +5,10 @@ import { appConfig } from "@/lib/config";
 
 const navItems = [
   { href: "/#tracks", label: "Треки" },
-  { href: "/#features", label: "Платформа" },
+  { href: "/#features", label: "Как устроено" },
   { href: "/#map", label: "Карта прогресса" },
-  { href: "/#api-ready", label: "MVP" },
+  { href: "/career-test", label: "Профтест" },
+  { href: "/dashboard", label: "Кабинет" },
 ];
 
 export function SiteHeader() {
@@ -31,10 +32,10 @@ export function SiteHeader() {
         </nav>
 
         <div className="site-header__cta">
-          <span className="badge-inline">Бета MVP</span>
+          <span className="badge-inline">Beta access</span>
           <AuthStatusActions />
           <Link href="/tracks/cpp" className="button button--primary">
-            Открыть трек
+            Начать обучение
           </Link>
         </div>
       </div>

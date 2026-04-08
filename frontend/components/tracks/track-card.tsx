@@ -12,19 +12,19 @@ const categoryMap: Record<string, string> = {
 export function TrackCard({ track }: { track: TrackListItem }) {
   return (
     <article className="track-card">
-      <div className="track-card__eyebrow">{track.title}</div>
-      <h3>{categoryMap[track.category] ?? track.category}</h3>
+      <div className="track-card__eyebrow">{categoryMap[track.category] ?? track.category}</div>
+      <h3>{track.title}</h3>
       <p>{track.description}</p>
       <div className="track-card__chips">
         <span className={`chip ${track.is_premium ? "chip--premium" : "chip--free"}`}>
-          {track.is_premium ? "Premium" : "Free start"}
+          {track.is_premium ? "Премиум-углубление" : "Бесплатный старт"}
         </span>
         <span className="chip">{track.slug}</span>
       </div>
       <div className="track-card__footer">
-        <span className="track-card__meta">Трек подключён к backend API и готов к детализации.</span>
+        <span className="track-card__meta">Маршрут уже собран: уровни, уроки, практика и карта прогресса.</span>
         <Link href={`/tracks/${track.slug}`} className="button button--ghost">
-          Открыть
+          Войти в трек
         </Link>
       </div>
     </article>

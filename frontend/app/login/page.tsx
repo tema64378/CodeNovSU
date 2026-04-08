@@ -9,19 +9,27 @@ export default function LoginPage() {
       <main className="auth-layout">
         <div className="container auth-grid">
           <AuthForm />
-          <aside className="detail-card">
-            <div className="eyebrow">Что дальше</div>
-            <h2 style={{ marginTop: 0 }}>Первый production auth flow уже на месте</h2>
+          <aside className="detail-card auth-aside">
+            <div className="eyebrow">После входа</div>
+            <h2 style={{ marginTop: 0 }}>Ты сразу попадаешь в живой учебный поток</h2>
             <p>
-              Этот экран перенесён из прототипа в живой Next.js маршрут и теперь работает с backend API вместо
-              демонстрационного JS.
+              Кабинет не должен быть пустой прослойкой между логином и обучением. Он сразу показывает твой маршрут,
+              ближайший урок, ачивки и прогресс по трекам.
             </p>
-            <ul>
-              <li>регистрация создаёт пользователя и возвращает JWT;</li>
-              <li>логин проверяет пароль и создаёт сессию на клиенте;</li>
-              <li>после входа пользователь попадает в новый dashboard;</li>
-              <li>следом сюда можно добавить Google и VK OAuth без переписывания UI.</li>
-            </ul>
+            <div className="auth-benefits">
+              <article className="auth-benefit-card">
+                <strong>Маршрут</strong>
+                <p>Видно, какой урок доступен сейчас, какой заблокирован и где тебя ждёт boss-модуль.</p>
+              </article>
+              <article className="auth-benefit-card">
+                <strong>Практика</strong>
+                <p>Можно быстро вернуться к задаче, продолжить попытку и запросить AI-подсказку без спойлеров.</p>
+              </article>
+              <article className="auth-benefit-card">
+                <strong>Награды</strong>
+                <p>Ачивки и прогресс помогают держать темп и видеть, что усилия превращаются в реальный рост.</p>
+              </article>
+            </div>
           </aside>
         </div>
       </main>

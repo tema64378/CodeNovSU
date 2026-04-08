@@ -54,6 +54,18 @@ class Lesson(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     level: Mapped[Level] = relationship(back_populates="lessons")
     tasks: Mapped[list["Task"]] = relationship(back_populates="lesson", cascade="all, delete-orphan")
 
+    @property
+    def task_count(self) -> int:
+        return len(self.tasks)
+
+    @property
+    def has_project_task(self) -> bool:
+        return any(task.is_project_step for task in self.tasks)
+
+    @property
+    def has_boss_task(self) -> bool:
+        return any(task.is_boss for task in self.tasks)
+
 
 class Task(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     __tablename__ = "tasks"

@@ -1,4 +1,4 @@
-from typing import Generator
+from typing import Generator, Optional
 from uuid import UUID
 
 import jwt
@@ -22,7 +22,7 @@ def get_db() -> Generator[Session, None, None]:
 
 
 def get_current_user(
-    credentials: HTTPAuthorizationCredentials | None = Depends(security),
+    credentials: Optional[HTTPAuthorizationCredentials] = Depends(security),
     db: Session = Depends(get_db),
 ) -> User:
     if credentials is None:

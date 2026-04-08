@@ -1,67 +1,116 @@
-import type { TrackDetail, TrackListItem } from "@/lib/types";
+import { curriculumCatalog } from "@/lib/curriculum-catalog";
+import type { LessonDetail, TaskDetail, TrackDetail, TrackListItem } from "@/lib/types";
 
-export const fallbackTracks: TrackListItem[] = [
-  {
-    id: "track-cpp",
-    slug: "cpp",
-    title: "C++",
-    description: "Системное программирование, алгоритмы и уверенная инженерная база.",
-    category: "programming",
-    is_premium: false,
-    is_published: true,
-  },
-  {
-    id: "track-python",
-    slug: "python",
-    title: "Python",
-    description: "Автоматизация, backend и инструменты для задач с данными и ИИ.",
-    category: "programming",
-    is_premium: false,
-    is_published: true,
-  },
-  {
-    id: "track-ai",
-    slug: "ai-specialist",
-    title: "AI Specialist",
-    description: "Нейросети, эксперименты с моделями и проектные сценарии.",
-    category: "ai",
-    is_premium: true,
-    is_published: true,
-  },
-  {
-    id: "track-security",
-    slug: "cybersecurity",
-    title: "Cybersecurity",
-    description: "Безопасная разработка, практика анализа уязвимостей и защитные подходы.",
-    category: "security",
-    is_premium: true,
-    is_published: true,
-  },
-];
+const fallbackTrackDetailsEntries = curriculumCatalog.map((track) => {
+  const levels = track.levels.map((level) => ({
+    id: `level-${track.slug}-${level.difficulty}`,
+    title: level.title,
+    difficulty: level.difficulty,
+    order_index: level.order_index,
+    theme_color: level.theme_color,
+    icon: level.icon,
+    lessons: level.lessons.map((lesson) => ({
+      id: `lesson-${track.slug}-${lesson.slug}`,
+      slug: lesson.slug,
+      title: lesson.title,
+      summary: lesson.summary,
+      estimated_minutes: lesson.estimated_minutes,
+      access_tier: lesson.access_tier,
+      order_index: lesson.order_index,
+      task_count: lesson.tasks.length,
+      has_project_task: lesson.tasks.some((task) => task.is_project_step),
+      has_boss_task: lesson.tasks.some((task) => task.is_boss),
+    })),
+  }));
 
-export const fallbackTrackDetails: Record<string, TrackDetail> = {
-  cpp: {
-    ...fallbackTracks[0],
-    levels: [
-      {
-        id: "level-beginner",
-        title: "Beginner Island",
-        difficulty: "beginner",
-        order_index: 1,
-        theme_color: "#4CAF50",
-        icon: "🌱",
-        lessons: [
+  const detail: TrackDetail = {
+    id: `track-${track.slug}`,
+    slug: track.slug,
+    title: track.title,
+    description: track.description,
+    category: track.category,
+    is_premium: track.is_premium,
+    is_published: track.is_published,
+    levels,
+  };
+
+  return [track.slug, detail] as const;
+});
+
+export const fallbackTrackDetails: Record<string, TrackDetail> = Object.fromEntries(fallbackTrackDetailsEntries);
+
+export const fallbackTracks: TrackListItem[] = curriculumCatalog.map((track) => ({
+  id: `track-${track.slug}`,
+  slug: track.slug,
+  title: track.title,
+  description: track.description,
+  category: track.category,
+  is_premium: track.is_premium,
+  is_published: track.is_published,
+}));
+
+export const fallbackLessonDetails: Record<string, LessonDetail> = Object.fromEntries(
+  curriculumCatalog.flatMap((track) =>
+    track.levels.flatMap((level) =>
+      level.lessons.map((lesson) => [
+        `${track.slug}:${lesson.slug}`,
+        {
+          id: `lesson-${track.slug}-${lesson.slug}`,
+          slug: lesson.slug,
+          title: lesson.title,
+          summary: lesson.summary,
+          theory_md: lesson.theory_md,
+          estimated_minutes: lesson.estimated_minutes,
+          access_tier: lesson.access_tier,
+          order_index: lesson.order_index,
+          tasks: lesson.tasks.map((task) => ({
+            id: `task-${track.slug}-${lesson.slug}-${task.slug}`,
+            slug: task.slug,
+            title: task.title,
+            language: task.language,
+            difficulty: task.difficulty,
+            access_tier: task.access_tier,
+            estimated_minutes: task.estimated_minutes,
+            max_hints: task.max_hints,
+            is_project_step: task.is_project_step,
+            is_boss: task.is_boss,
+          })),
+        } satisfies LessonDetail,
+      ]),
+    ),
+  ),
+);
+
+export const fallbackTaskDetails: Record<string, TaskDetail> = Object.fromEntries(
+  curriculumCatalog.flatMap((track) =>
+    track.levels.flatMap((level) =>
+      level.lessons.flatMap((lesson) =>
+        lesson.tasks.map((task) => [
+          `${track.slug}:${lesson.slug}:${task.slug}`,
           {
-            id: "lesson-hello",
-            slug: "hello-world-and-structure",
-            title: "Hello, World! и структура программы",
-            summary: "Разбираем точку входа, вывод в консоль и минимальную структуру C++ программы.",
-            estimated_minutes: 15,
-            access_tier: "free",
-            order_index: 1,
-          },
-        ],
-      },
-    ],
-  },
-};
+            id: `task-${track.slug}-${lesson.slug}-${task.slug}`,
+            slug: task.slug,
+            title: task.title,
+            description_md: task.description_md,
+            language: task.language,
+            difficulty: task.difficulty,
+            starter_code: task.starter_code,
+            solution_template: task.solution_template,
+            max_hints: task.max_hints,
+            access_tier: task.access_tier,
+            estimated_minutes: task.estimated_minutes,
+            is_project_step: task.is_project_step,
+            is_boss: task.is_boss,
+            visible_test_cases: task.visible_test_cases.map((testCase, index) => ({
+              id: `case-${track.slug}-${lesson.slug}-${task.slug}-${index + 1}`,
+              kind: testCase.kind,
+              input_payload: testCase.input_payload,
+              expected_output: testCase.expected_output,
+              weight: testCase.weight,
+            })),
+          } satisfies TaskDetail,
+        ]),
+      ),
+    ),
+  ),
+);

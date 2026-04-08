@@ -12,6 +12,9 @@ class LessonSummaryRead(BaseModel):
     estimated_minutes: int
     access_tier: str
     order_index: int
+    task_count: int
+    has_project_task: bool
+    has_boss_task: bool
 
     model_config = {"from_attributes": True}
 

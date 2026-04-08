@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { useAuth } from "@/components/providers/auth-provider";
@@ -14,7 +14,9 @@ export function AuthForm() {
   const { login, register } = useAuth();
   const router = useRouter();
 
-  const onSubmit = async (formData: FormData) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
     const email = String(formData.get("email") || "").trim();
     const password = String(formData.get("password") || "").trim();
     const displayName = String(formData.get("displayName") || "").trim();
@@ -29,10 +31,11 @@ export function AuthForm() {
           password,
           display_name: displayName,
         });
+        router.push("/career-test");
       } else {
         await login({ email, password });
+        router.push("/dashboard");
       }
-      router.push("/dashboard");
     } catch (nextError) {
       setError(nextError instanceof Error ? nextError.message : "Не удалось выполнить запрос.");
     } finally {
@@ -42,11 +45,11 @@ export function AuthForm() {
 
   return (
     <div className="detail-card">
-      <div className="eyebrow">Auth flow</div>
-      <h1 style={{ marginTop: 0 }}>{mode === "login" ? "Вход в CodeNovsu" : "Создание аккаунта"}</h1>
+      <div className="eyebrow">Вход в маршрут</div>
+      <h1 style={{ marginTop: 0 }}>{mode === "login" ? "С возвращением в CodeNovsu" : "Создай аккаунт и начни путь"}</h1>
       <p>
-        Это уже production‑страница, подключённая к backend API. Дальше сюда можно спокойно добавлять OAuth,
-        подтверждение почты и onboarding без переписывания маршрута.
+        Аккаунт нужен не ради формальности. Он сохраняет прогресс, открывает кабинет, позволяет возвращаться к
+        задачам и делает обучение непрерывным.
       </p>
 
       <div className="detail-chip-row" style={{ marginBottom: 18 }}>
@@ -66,7 +69,7 @@ export function AuthForm() {
         </button>
       </div>
 
-      <form action={onSubmit} className="auth-form">
+      <form onSubmit={onSubmit} className="auth-form">
         {mode === "register" ? (
           <label className="auth-field">
             <span>Как вас называть</span>
@@ -84,8 +87,8 @@ export function AuthForm() {
 
         <div className="auth-note">
           {mode === "login"
-            ? "Войдите, чтобы открыть кабинет, видеть прогресс и дальше подключать lesson/task flow."
-            : "После регистрации backend сразу возвращает JWT и пользователь попадает в кабинет."}
+            ? "После входа ты сразу попадёшь в кабинет с прогрессом, картой трека и достижениями."
+            : "После регистрации аккаунт сразу открывает кабинет и закрепляет твою учебную траекторию."}
         </div>
 
         {error ? <div className="auth-error">{error}</div> : null}
