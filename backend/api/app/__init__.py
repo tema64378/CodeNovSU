@@ -1,0 +1,1 @@
+"""CodeNovsu backend package."""

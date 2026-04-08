@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Программы — CodeNovSU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="./index.html" aria-label="На главную">
+        <svg class="logo logo-edu" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="logoGradHdr" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#111111" />
+              <stop offset="100%" stop-color="#1a1a1a" />
+            </linearGradient>
+          </defs>
+          <rect x="4" y="4" width="40" height="40" rx="12" fill="url(#logoGradHdr)" />
+          <path d="M16 14 L12 24 L16 34" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M32 14 L36 24 L32 34" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="24" cy="24" r="2" fill="#02b341" />
+        </svg>
+        <div class="brand-text">
+          <div class="brand-title">CodeNovSU</div>
+          <div class="brand-sub">Практика. Проекты. Результат.</div>
+        </div>
+      </a>
+      <nav class="nav nav-practicum" data-fixed-menu="1">
+        <a href="./forum.html">Блог</a>
+        <a href="./catalog.html">Компаниям</a>
+        <div class="nav-dropdown" data-nav-dropdown>
+          <button class="nav-trigger" type="button" data-menu-toggle aria-expanded="false">
+            О Практикуме
+            <span class="nav-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="nav-panel" hidden>
+            <a class="nav-panel-item" href="./about.html">О нас</a>
+            <a class="nav-panel-item" href="./community.html">Сообщество выпускников</a>
+            <a class="nav-panel-item" href="./how-we-teach.html">Как мы учим</a>
+            <a class="nav-panel-item" href="./career.html">Карьерный центр</a>
+            <a class="nav-panel-item" href="./reviews.html">Отзывы</a>
+            <a class="nav-panel-item" href="./dashboard.html">Всё о поиске работы</a>
+          </div>
+        </div>
+        <div class="nav-dropdown" data-nav-dropdown>
+          <button class="nav-trigger" type="button" data-menu-toggle aria-expanded="false">
+            Все курсы
+            <span class="nav-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="nav-panel nav-panel-courses" hidden>
+            <a class="nav-panel-item" href="./cpp.html">C++ разработка</a>
+            <a class="nav-panel-item" href="./csharp.html">C# разработка</a>
+            <a class="nav-panel-item" href="./frontend.html">HTML/CSS/JavaScript</a>
+            <a class="nav-panel-item" href="./data-analysis.html">Анализ данных</a>
+            <a class="nav-panel-item" href="./test.html">Тесты и сертификация</a>
+          </div>
+        </div>
+      </nav>
+      <div class="cta">
+        <span class="auth-status" id="auth-status">Гость</span>
+        <a class="button ghost" href="./login.html">Войти</a>
+        <a class="button primary liquid-morph-element" href="./cpp.html">Начать бесплатно</a>
+      </div>
+    </header>
+
+    <main class="shell catalog-shell">
+      <section class="catalog-hero">
+        <div class="hero-kicker">Каталог обучения</div>
+        <h1>Курсы и профессии для развития в IT и digital</h1>
+        <p class="lead">
+          Выберите направление, уровень и формат обучения. База (уровень 1) у нас бесплатна;
+          углублённые уровни и расширенная практика — в подписке CodeNovSU Плюс. В программах есть проекты и поддержка.
+        </p>
+      </section>
+
+      <section class="catalog-tabs" id="catalog-tabs">
+        <button type="button" class="catalog-tab active" data-catalog-category="all">Все направления</button>
+        <button type="button" class="catalog-tab" data-catalog-category="programming">Программирование</button>
+        <button type="button" class="catalog-tab" data-catalog-category="data">Анализ данных</button>
+        <button type="button" class="catalog-tab" data-catalog-category="design">Дизайн</button>
+        <button type="button" class="catalog-tab" data-catalog-category="management">Менеджмент</button>
+        <button type="button" class="catalog-tab" data-catalog-category="marketing">Маркетинг</button>
+        <button type="button" class="catalog-tab" data-catalog-category="ai">Искусственный интеллект</button>
+      </section>
+
+      <section class="catalog-layout">
+        <aside class="catalog-filters panel">
+          <div class="panel-title">Фильтры</div>
+
+          <div class="catalog-filter-group">
+            <div class="meta">Формат</div>
+            <label class="catalog-check"><input type="checkbox" name="catalog-format" value="profession" checked /> Профессии</label>
+            <label class="catalog-check"><input type="checkbox" name="catalog-format" value="course" checked /> Курсы</label>
+            <label class="catalog-check"><input type="checkbox" name="catalog-format" value="intensive" checked /> Интенсивы</label>
+          </div>
+
+          <div class="catalog-filter-group">
+            <div class="meta">Уровень</div>
+            <label class="catalog-check"><input type="checkbox" name="catalog-level" value="beginner" checked /> С нуля</label>
+            <label class="catalog-check"><input type="checkbox" name="catalog-level" value="middle" checked /> Для практиков</label>
+            <label class="catalog-check"><input type="checkbox" name="catalog-level" value="advanced" checked /> Продвинутый</label>
+          </div>
+
+          <button class="ghost small" id="catalog-reset-btn">Сбросить фильтры</button>
+        </aside>
+
+        <div class="catalog-results">
+          <div class="catalog-toolbar">
+            <div class="meta" id="catalog-count">Курсы: 0</div>
+            <div class="search">
+              <input id="catalog-query" placeholder="Поиск по названию или навыку" />
+              <button class="ghost" id="catalog-search-btn">Найти</button>
+            </div>
+            <label class="catalog-sort">
+              <span class="meta">Сортировка</span>
+              <select id="catalog-sort">
+                <option value="popular">По популярности</option>
+                <option value="price-asc">Сначала дешевле</option>
+                <option value="price-desc">Сначала дороже</option>
+                <option value="duration-asc">Сначала короче</option>
+              </select>
+            </label>
+          </div>
+          <div class="catalog-grid" id="catalog-grid"></div>
+          <div class="catalog-footer">
+            <div class="meta" id="catalog-showing"></div>
+            <button class="button ghost" id="catalog-show-more-btn" type="button">Показать еще</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>© CodeNovSU</div>
+      <div class="footer-links">
+        <a href="./cpp.html">Курсы</a>
+        <a href="./dashboard.html">Кабинет</a>
+        <a href="./forum.html">Форум</a>
+      </div>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

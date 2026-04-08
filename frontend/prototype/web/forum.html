@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Форум — CodeNovSU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="./index.html" aria-label="На главную">
+        <svg class="logo logo-edu" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="logoGradHdr" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#111111" />
+              <stop offset="100%" stop-color="#1a1a1a" />
+            </linearGradient>
+          </defs>
+          <rect x="4" y="4" width="40" height="40" rx="12" fill="url(#logoGradHdr)" />
+          <path d="M16 14 L12 24 L16 34" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M32 14 L36 24 L32 34" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+          <circle cx="24" cy="24" r="2" fill="#02b341" />
+        </svg>
+        <div class="brand-text">
+          <div class="brand-title">CodeNovSU</div>
+          <div class="brand-sub">Практика. Проекты. Результат.</div>
+        </div>
+      </a>
+      <nav class="nav nav-practicum" data-fixed-menu="1">
+        <a href="./forum.html">Блог</a>
+        <a href="./catalog.html">Компаниям</a>
+        <div class="nav-dropdown" data-nav-dropdown>
+          <button class="nav-trigger" type="button" data-menu-toggle aria-expanded="false">
+            О Практикуме
+            <span class="nav-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="nav-panel" hidden>
+            <a class="nav-panel-item" href="./about.html">О нас</a>
+            <a class="nav-panel-item" href="./community.html">Сообщество выпускников</a>
+            <a class="nav-panel-item" href="./how-we-teach.html">Как мы учим</a>
+            <a class="nav-panel-item" href="./career.html">Карьерный центр</a>
+            <a class="nav-panel-item" href="./reviews.html">Отзывы</a>
+            <a class="nav-panel-item" href="./dashboard.html">Всё о поиске работы</a>
+          </div>
+        </div>
+        <div class="nav-dropdown" data-nav-dropdown>
+          <button class="nav-trigger" type="button" data-menu-toggle aria-expanded="false">
+            Все курсы
+            <span class="nav-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="nav-panel nav-panel-courses" hidden>
+            <a class="nav-panel-item" href="./cpp.html">C++ разработка</a>
+            <a class="nav-panel-item" href="./csharp.html">C# разработка</a>
+            <a class="nav-panel-item" href="./frontend.html">HTML/CSS/JavaScript</a>
+            <a class="nav-panel-item" href="./data-analysis.html">Анализ данных</a>
+            <a class="nav-panel-item" href="./test.html">Тесты и сертификация</a>
+          </div>
+        </div>
+      </nav>
+      <div class="cta">
+        <span class="auth-status" id="auth-status">Гость</span>
+        <a class="button ghost" href="./login.html">Войти</a>
+        <a class="button primary liquid-morph-element" href="./cpp.html">Начать бесплатно</a>
+      </div>
+    </header>
+
+    <main class="shell">
+      <div class="section-head">
+        <h2>Сообщество</h2>
+        <div class="pill">Обсуждения и помощь</div>
+      </div>
+      <div class="grid two">
+        <div class="panel">
+          <div class="panel-title">Темы</div>
+          <p class="meta" id="forum-hint">Локально в этом браузере. Для публикаций на сервер войдите в аккаунт.</p>
+          <ul class="list" id="forum-thread-list"></ul>
+        </div>
+        <div class="panel forum-compose">
+          <div class="panel-title">Новая тема</div>
+          <input id="forum-thread-title" placeholder="Заголовок" autocomplete="off" />
+          <textarea id="forum-thread-body" placeholder="Текст сообщения" rows="5"></textarea>
+          <button type="button" class="primary liquid-morph-element" id="forum-create-btn">Создать</button>
+          <p class="meta" id="forum-create-status" hidden></p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div>© CodeNovSU</div>
+      <div class="footer-links">
+        <a href="./cpp.html">Курсы</a>
+        <a href="./dashboard.html">Кабинет</a>
+        <a href="./forum.html">Форум</a>
+      </div>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

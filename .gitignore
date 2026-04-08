@@ -1,0 +1,15 @@
+.DS_Store
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+
+archive/legacy/**/target/
+archive/legacy/**/*.o
+archive/legacy/**/*.rlib
+archive/legacy/**/*.rmeta
+
+backend/api/.venv/
+backend/api/.env
+
+frontend/.next/
+frontend/node_modules/
