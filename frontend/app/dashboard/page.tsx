@@ -11,17 +11,18 @@ export default function DashboardPage() {
       <SiteHeader />
       <AuthGuard>
         <main className="section">
-          <div className="container detail-section">
+          <div className="container">
             <DashboardClient />
-            <section className="detail-grid dashboard-support-grid">
-              <article className="detail-card dashboard-support-card">
-                <div className="eyebrow">Навигация</div>
-                <h2 style={{ marginTop: 0 }}>Что делать дальше, когда время ограничено</h2>
+
+            <div className="detail-grid" style={{ marginTop: 24 }}>
+              <article className="detail-card">
+                <span className="eyebrow">Навигация</span>
+                <h2>Что делать дальше, когда время ограничено</h2>
                 <p>
                   Хороший кабинет не заставляет думать заново каждый раз. Он быстро возвращает тебя в понятный
                   контекст: продолжить трек, открыть практику или закрыть один короткий урок.
                 </p>
-                <div className="dashboard-shortcuts">
+                <div className="dashboard-actions">
                   <Link href="/tracks/cpp" className="button button--primary">
                     Вернуться к треку
                   </Link>
@@ -31,9 +32,9 @@ export default function DashboardPage() {
                 </div>
               </article>
 
-              <aside className="detail-card dashboard-support-card">
-                <div className="eyebrow">Подписка</div>
-                <h2 style={{ marginTop: 0 }}>Премиум нужен для глубины, а не для старта</h2>
+              <aside className="detail-card">
+                <span className="eyebrow">Подписка</span>
+                <h2>Премиум нужен для глубины, а не для старта</h2>
                 <p>
                   Бесплатный слой даёт вход и базовый ритм. Премиум открывает углублённые уровни, больше практики и
                   безлимитные AI-подсказки.
@@ -43,7 +44,7 @@ export default function DashboardPage() {
                   <span className="chip chip--premium">Premium depth</span>
                 </div>
               </aside>
-            </section>
+            </div>
           </div>
         </main>
       </AuthGuard>

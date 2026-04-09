@@ -9,12 +9,12 @@ export default function LoginPage() {
       <main className="auth-layout">
         <div className="container auth-grid">
           <AuthForm />
+
           <aside className="detail-card auth-aside">
-            <div className="eyebrow">После входа</div>
-            <h2 style={{ marginTop: 0 }}>Ты сразу попадаешь в живой учебный поток</h2>
+            <span className="eyebrow">После входа</span>
+            <h2>Ты сразу попадаешь в живой учебный поток</h2>
             <p>
-              Кабинет не должен быть пустой прослойкой между логином и обучением. Он сразу показывает твой маршрут,
-              ближайший урок, ачивки и прогресс по трекам.
+              Кабинет сразу показывает твой маршрут, ближайший урок, ачивки и прогресс по трекам.
             </p>
             <div className="auth-benefits">
               <article className="auth-benefit-card">
@@ -23,11 +23,11 @@ export default function LoginPage() {
               </article>
               <article className="auth-benefit-card">
                 <strong>Практика</strong>
-                <p>Можно быстро вернуться к задаче, продолжить попытку и запросить AI-подсказку без спойлеров.</p>
+                <p>Можно вернуться к задаче, продолжить попытку и запросить AI-подсказку без спойлеров.</p>
               </article>
               <article className="auth-benefit-card">
                 <strong>Награды</strong>
-                <p>Ачивки и прогресс помогают держать темп и видеть, что усилия превращаются в реальный рост.</p>
+                <p>Ачивки и прогресс помогают держать темп и видеть реальный рост навыков.</p>
               </article>
             </div>
           </aside>

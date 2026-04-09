@@ -11,21 +11,22 @@ export default function CareerTestPage() {
         <main className="auth-layout">
           <div className="container auth-grid">
             <CareerTestWizard />
+
             <aside className="detail-card auth-aside">
-              <div className="eyebrow">Зачем это нужно</div>
-              <h2 style={{ marginTop: 0 }}>Тест сокращает путь до первого осмысленного прогресса</h2>
+              <span className="eyebrow">Зачем это нужно</span>
+              <h2>Тест сокращает путь до первого осмысленного прогресса</h2>
               <p>
-                Когда направлений много, новичку тяжело понять, с чего реально начать. Тест помогает не метаться
-                между темами, а выбрать трек, который ближе по цели, формату обучения и когнитивной нагрузке.
+                Когда направлений много, новичку тяжело понять, с чего начать. Тест помогает выбрать трек, который
+                ближе по цели и когнитивной нагрузке.
               </p>
               <div className="auth-benefits">
                 <article className="auth-benefit-card">
                   <strong>Меньше перегруза</strong>
-                  <p>Вместо шести равноправных направлений пользователь получает один разумный стартовый маршрут.</p>
+                  <p>Вместо шести направлений — один разумный стартовый маршрут.</p>
                 </article>
                 <article className="auth-benefit-card">
                   <strong>Быстрее к практике</strong>
-                  <p>После результата можно сразу открыть рекомендованный трек и не тратить силы на выбор вручную.</p>
+                  <p>После результата сразу открывается рекомендованный трек.</p>
                 </article>
                 <article className="auth-benefit-card">
                   <strong>Можно пересдать</strong>

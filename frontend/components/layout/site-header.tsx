@@ -4,11 +4,10 @@ import { AuthStatusActions } from "@/components/auth/auth-status-actions";
 import { appConfig } from "@/lib/config";
 
 const navItems = [
-  { href: "/#tracks", label: "Треки" },
+  { href: "/#tracks",  label: "Треки" },
   { href: "/#features", label: "Как устроено" },
-  { href: "/#map", label: "Карта прогресса" },
   { href: "/career-test", label: "Профтест" },
-  { href: "/dashboard", label: "Кабинет" },
+  { href: "/dashboard",  label: "Кабинет" },
 ];
 
 export function SiteHeader() {
@@ -19,7 +18,7 @@ export function SiteHeader() {
           <span className="brand-lockup__mark">{"</>"}</span>
           <span className="brand-lockup__text">
             <span className="brand-lockup__title">{appConfig.appName}</span>
-            <span className="brand-lockup__subtitle">Практика. Проекты. ИИ-наставник.</span>
+            <span className="brand-lockup__subtitle">Практика · Проекты · AI</span>
           </span>
         </Link>
 
@@ -32,10 +31,9 @@ export function SiteHeader() {
         </nav>
 
         <div className="site-header__cta">
-          <span className="badge-inline">Beta access</span>
           <AuthStatusActions />
           <Link href="/tracks/cpp" className="button button--primary">
-            Начать обучение
+            Начать →
           </Link>
         </div>
       </div>
