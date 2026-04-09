@@ -1,96 +1,215 @@
 import Link from "next/link";
 
-import { FeatureCard } from "@/components/marketing/feature-card";
-import { SectionHeading } from "@/components/marketing/section-heading";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
-import { TrackMapPreview } from "@/components/tracks/track-map-preview";
+import { CodePreview } from "@/components/home/code-preview";
+import { FeatureCard } from "@/components/marketing/feature-card";
+import { SectionHeading } from "@/components/marketing/section-heading";
+import { AnimatedCounter } from "@/components/ui/animated-counter";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { TrackCard } from "@/components/tracks/track-card";
-import { heroMetrics, heroPanelCards, platformFeatures } from "@/features/home/content";
-import { getTrack, getTracks } from "@/lib/api/codenovsu";
+import { platformFeatures } from "@/features/home/content";
+import { getTracks } from "@/lib/api/codenovsu";
+
+const pathSteps = [
+  { num: 1, title: "Пройди профтест",   desc: "Определи своё направление и уровень" },
+  { num: 2, title: "Выбери трек",        desc: "C++, Python, JS, AI и другие" },
+  { num: 3, title: "Изучай теорию",      desc: "Короткие уроки с наглядными примерами" },
+  { num: 4, title: "Решай задачи",       desc: "Автопроверка и AI-подсказки без спойлеров" },
+  { num: 5, title: "Получай награды",    desc: "Достижения, прогресс и сертификаты" },
+];
 
 export default async function HomePage() {
-  const [tracks, previewTrack] = await Promise.all([getTracks(), getTrack("cpp")]);
+  const tracks = await getTracks();
 
   return (
     <div className="page-shell">
       <SiteHeader />
       <main>
+
+        {/* ── HERO ─────────────────────────────────────── */}
         <section className="hero">
-          <div className="hero-shell hero__grid">
-            <div className="hero__content">
-              <div className="eyebrow">Учиться через маршрут, а не через хаос</div>
-              <h1>CodeNovsu помогает войти в программирование мягко, но без потери глубины</h1>
-              <p>
-                Здесь теория, практика, карта прогресса, AI-подсказки и награды работают как единый учебный путь.
-                Можно начать бесплатно, двигаться шаг за шагом и видеть, что делать дальше, без ощущения
-                перегруженности.
-              </p>
-              <div className="hero__actions">
-                <Link href="/tracks/cpp" className="button button--primary">
-                  Начать с C++
-                </Link>
-                <Link href="/dashboard" className="button button--ghost">
-                  Открыть кабинет
-                </Link>
-              </div>
-              <div className="hero__metrics">
-                {heroMetrics.map((metric) => (
-                  <div className="metric-pill" key={metric.label}>
-                    <strong>{metric.value}</strong>
-                    <span>{metric.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <aside className="hero__panel" id="api-ready">
-              <div className="hero__panel-grid">
-                {heroPanelCards.map((card) => (
-                  <div className="info-card" key={card.label}>
-                    <div className="info-card__label">{card.label}</div>
-                    <div className="info-card__value">{card.value}</div>
-                    <div className="info-card__body">{card.body}</div>
-                  </div>
-                ))}
-              </div>
-            </aside>
+          {/* Animated background */}
+          <div className="hero__bg" aria-hidden="true">
+            <div className="hero__orb hero__orb--1" />
+            <div className="hero__orb hero__orb--2" />
+            <div className="hero__orb hero__orb--3" />
+            <div className="hero__grid-overlay" />
+            <div className="hero__scan" />
           </div>
-        </section>
 
-        <section className="section" id="features">
           <div className="container">
-            <SectionHeading
-              eyebrow="Платформа"
-              title="Сразу строим фронтенд вокруг реальных продуктовых модулей"
-              description="Каждый экран должен отвечать на понятный пользовательский вопрос: где я сейчас, что мне делать дальше, насколько я продвинулся и что получу за усилие."
-            />
-            <div className="section-grid">
-              {platformFeatures.map((feature) => (
-                <FeatureCard key={feature.title} {...feature} />
-              ))}
+            <div className="hero__inner">
+              {/* Left: text */}
+              <div className="hero__content">
+                <span className="eyebrow">✦ Образовательная платформа</span>
+
+                <h1 className="hero__title">
+                  Учись писать код
+                  <span className="hero__title-gradient">на практике</span>
+                </h1>
+
+                <p className="hero__subtitle">
+                  Интерактивные треки, реальные задачи, AI-наставник и карта прогресса —
+                  всё в одном месте. Начни бесплатно, без регистрации карты.
+                </p>
+
+                <div className="hero__actions">
+                  <Link href="/tracks/cpp" className="button button--primary button--lg">
+                    Начать обучение →
+                  </Link>
+                  <Link href="/career-test" className="button button--ghost button--lg">
+                    Пройти профтест
+                  </Link>
+                </div>
+
+                <div className="hero__metrics">
+                  <div className="metric-pill">
+                    <strong>24</strong>
+                    <span>урока</span>
+                  </div>
+                  <div className="metric-divider" />
+                  <div className="metric-pill">
+                    <strong>6</strong>
+                    <span>треков</span>
+                  </div>
+                  <div className="metric-divider" />
+                  <div className="metric-pill">
+                    <strong>3</strong>
+                    <span>уровня AI</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: live code preview */}
+              <div className="hero__card-wrap">
+                <CodePreview />
+              </div>
             </div>
           </div>
         </section>
 
+        {/* ── ANIMATED STATS ───────────────────────────── */}
+        <div className="stats-section">
+          <div className="container">
+            <div className="stats-grid">
+              <div className="stat-item">
+                <div className="stat-item__number">
+                  <AnimatedCounter value={12000} suffix="+" />
+                </div>
+                <div className="stat-item__label">студентов</div>
+                <span className="stat-item__icon">👤</span>
+              </div>
+              <div className="stat-item">
+                <div className="stat-item__number">
+                  <AnimatedCounter value={8} />
+                </div>
+                <div className="stat-item__label">треков</div>
+                <span className="stat-item__icon">🎯</span>
+              </div>
+              <div className="stat-item">
+                <div className="stat-item__number">
+                  <AnimatedCounter value={240} suffix="+" />
+                </div>
+                <div className="stat-item__label">задач</div>
+                <span className="stat-item__icon">⚡</span>
+              </div>
+              <div className="stat-item">
+                <div className="stat-item__number">
+                  <AnimatedCounter value={97} suffix="%" />
+                </div>
+                <div className="stat-item__label">довольны результатом</div>
+                <span className="stat-item__icon">⭐</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── TRACKS ───────────────────────────────────── */}
         <section className="section" id="tracks">
           <div className="container">
-            <SectionHeading
-              eyebrow="Треки"
-              title="Треки уже собраны как понятные маршруты роста"
-              description="В каждом треке есть уровни сложности, практика, boss-модули и карта прогресса. Даже если backend временно недоступен, UI продолжает показывать реальную структуру обучения."
-            />
+            <ScrollReveal>
+              <SectionHeading
+                eyebrow="Треки"
+                title="Выбери свой путь в программировании"
+                description="Каждый трек — структурированный маршрут с уровнями сложности, практикой и картой прогресса."
+              />
+            </ScrollReveal>
+
             <div className="track-grid">
-              {tracks.map((track) => (
-                <TrackCard key={track.id} track={track} />
+              {tracks.map((track, i) => (
+                <ScrollReveal key={track.id} delay={i * 80}>
+                  <TrackCard track={track} />
+                </ScrollReveal>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="section">
-          <div className="container">{previewTrack ? <TrackMapPreview track={previewTrack} /> : null}</div>
+        {/* ── LEARNING PATH INFOGRAPHIC ─────────────────── */}
+        <section className="section section--alt learning-path" id="features">
+          <div className="container">
+            <ScrollReveal>
+              <SectionHeading
+                eyebrow="Как это работает"
+                title="Путь от новичка до разработчика"
+                description="Пять шагов, которые превращают теорию в реальные навыки."
+              />
+            </ScrollReveal>
+
+            <div className="path-steps">
+              {pathSteps.map((step, i) => (
+                <ScrollReveal key={step.num} delay={i * 100} className="path-step">
+                  <div className="path-step__number">{step.num}</div>
+                  <div className="path-step__title">{step.title}</div>
+                  <div className="path-step__desc">{step.desc}</div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
         </section>
+
+        {/* ── FEATURES ─────────────────────────────────── */}
+        <section className="section" id="platform">
+          <div className="container">
+            <ScrollReveal>
+              <SectionHeading
+                eyebrow="Платформа"
+                title="Всё необходимое для обучения"
+                description="Теория, практика, AI-наставник и геймификация в едином учебном пространстве."
+              />
+            </ScrollReveal>
+
+            <div className="section-grid">
+              {platformFeatures.map((feature, i) => (
+                <ScrollReveal key={feature.title} delay={i * 100}>
+                  <FeatureCard {...feature} />
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── CTA ──────────────────────────────────────── */}
+        <section className="cta-section">
+          <div className="container">
+            <ScrollReveal>
+              <div className="cta-card">
+                <h2>Готов начать обучение?</h2>
+                <p>Первый уровень бесплатно. Без кредитной карты.</p>
+                <div className="cta-card__actions">
+                  <Link href="/tracks/cpp" className="button button--primary button--lg">
+                    Начать бесплатно
+                  </Link>
+                  <Link href="/career-test" className="button button--ghost button--lg">
+                    Пройти профтест
+                  </Link>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+
       </main>
       <SiteFooter />
     </div>
